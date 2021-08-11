@@ -26,6 +26,18 @@ output "kubernetes_identity_object_id" {
   value = module.infrastructure.kubernetes_identity.0.object_id
 }
 
+output "hub_virtual_network_id" {
+  value = module.network.hub_virtual_network_id
+}
+
+output "hub_virtual_network_name" {
+  value = module.network.hub_virtual_network_name
+}
+
+output "hub_virtual_network_resource_group_name" {
+  value = module.network.hub_virtual_network_resource_group_name
+}
+
 output "aks_load_balancers_subnet_id" {
   value = module.network.aks_load_balancers_subnet_id
 }
