@@ -85,7 +85,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "aks" {
 
     rule {
       name                  = "aks-control-plane"
-      source_addresses      = module.network.aks_system_address_space
+      source_addresses      = module.network.aks_address_space
       destination_addresses = data.dns_a_record_set.control_plane_ip.addrs
       destination_ports     = ["443"]
       protocols             = ["TCP"]

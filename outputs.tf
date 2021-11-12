@@ -50,8 +50,16 @@ output "aks_load_balancers_address_space" {
   value = module.network.aks_load_balancers_address_space
 }
 
+output "aks_address_space" {
+  value = module.network.aks_address_space
+}
+
 output "aks_system_subnet_id" {
   value = module.network.aks_system_subnet_id
+}
+
+output "aks_system_address_space" {
+  value = module.network.aks_system_address_space
 }
 
 output "dns_zone" {
