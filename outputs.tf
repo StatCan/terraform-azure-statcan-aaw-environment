@@ -69,3 +69,19 @@ output "dns_zone_subscription_id" {
 output "dns_zone_name_servers" {
   value = module.network.dns_zone_name_servers
 }
+
+output "firewall_policy_id" {
+  value = module.network.firewall_policy_id
+}
+
+output "firewall_route_table_name" {
+  value = module.network.firewall_route_table_name
+}
+
+output "firewall_route_table_resource_group_name" {
+  value = module.network.firewall_route_table_resource_group_name
+}
+
+output "firewall_route_table_id" {
+  value = module.network.firewall_route_table_id
+}
