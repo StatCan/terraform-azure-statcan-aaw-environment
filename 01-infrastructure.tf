@@ -276,6 +276,6 @@ module "user_gpufour_protected__node_pool" {
   subnet_id              = module.network.aks_user_protected_b_subnet_id
 
   enable_auto_scaling    = true
-  auto_scaling_min_nodes = var.user_gpu_protected_b_node_pool_auto_scaling_min_nodes
-  auto_scaling_max_nodes = var.user_gpu_protected_b_node_pool_auto_scaling_max_nodes
+  auto_scaling_min_nodes = var.user_gpu_four_protected_b_node_pool_auto_scaling_min_nodes
+  auto_scaling_max_nodes = var.user_gpu_four_protected_b_node_pool_auto_scaling_max_nodes
 }
