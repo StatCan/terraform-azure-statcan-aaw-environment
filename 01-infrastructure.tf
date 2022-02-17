@@ -256,7 +256,7 @@ module "user_gpu_protected__node_pool" {
 module "user_gpufour_protected__node_pool" {
   source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/terraform/modules/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
 
-  name                  = "usergpufourpb"
+  name                  = "usergpu4pb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
   kubernetes_version    = var.user_gpu_protected_b_node_pool_kubernetes_version
   node_count            = 1
