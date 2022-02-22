@@ -14,5 +14,5 @@ module "network" {
   ingress_general_private_ip       = var.ingress_general_private_ip
   ingress_kubeflow_private_ip      = var.ingress_kubeflow_private_ip
   ingress_authenticated_private_ip = var.ingress_authenticated_private_ip
-  ingress_authenticated_private_ip = var.ingress_protected_b_private_ip
+  ingress_protected_b_private_ip   = var.ingress_protected_b_private_ip
 }
