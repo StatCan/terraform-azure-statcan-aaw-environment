@@ -87,6 +87,11 @@ variable "ingress_authenticated_private_ip" {
   default     = null
 }
 
+variable "ingress_protected_b_private_ip" {
+  description = "Private IP of the protected b ingress"
+  default     = null
+}
+
 variable "system_node_pool_kubernetes_version" {
   description = "Kubernetes version for the system node pool"
 
