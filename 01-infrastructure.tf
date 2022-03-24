@@ -53,7 +53,7 @@ module "infrastructure" {
   ]
 
   # SSH Key
-  cluster_ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLkMdICXrdk8arJjUAKelTeYutZWvmgwzT8LP/GCO8SMCXmRR4ByEeFq4MiSxDve5kUYwqa6ajay3cfGSA8x7YME8fjyNLPBzbL5Ngr5mUMi5SIMzQdx7EP3kZ/HKFpAL7LWs/1LFKqQT7n9IrbiDFBA1OpvemGP0bhlN133AIVSnrVU23Salr1BjaAtmLIAgFs06mLBroYHgwIeZTNSoQlkKW87oCtE0yqXYUaJCaZzG03jjZOtDz+kYnnUyjEDPAwhPeFacr41UoAXf4w0c+KvzYPDX/EwwqbLFzkI619qeE5Q8a57WC8wz7+oXIIypbzbWiNivQOCv77Och++/CL6lnjsSd0kz2Xn1ehkAr+k93nRbWg9uQw9mb+yrKHigwe4mndY0HFnn5vB+kCMw8UzW6EAV5V9vdzrj+/zx+HO0fWaveoD/XYu5RjVcYLk9u39E9b4CU7qWpTBzQcKokMbg4V5Hg692haI9tJ2AxbRpj+ep1YWG2Uo+JTbkT+aq8g/D/NOGo/416YU25P1PwefKHsm0TlNP2Ya0AlkwednLDMUJRkCNpX1hCWoZtW27kLHt/zR/25qufGdAzUZ2gJ7QeOPA2X0AjU/inl/dv0B8xEzvn//F2DXPBrCwxkNMAS9hHFx+O+sa90/4knFG08eLXK54mX9M4TrVUM5vEAw== aaw-dev-cc-00"
+  cluster_ssh_key = var.cluster_ssh_key
 
   # Cluster RBAC
   cluster_users  = var.cluster_users

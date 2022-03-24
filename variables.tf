@@ -256,3 +256,7 @@ variable "cluster_admins" {
 
   default = []
 }
+
+variable "cluster_ssh_key" {
+  description = "The SSH key for Kubernetes to use"
+}
