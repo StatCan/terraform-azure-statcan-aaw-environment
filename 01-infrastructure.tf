@@ -226,6 +226,33 @@ module "user_protected_b_node_pool" {
   auto_scaling_max_nodes = var.user_protected_b_node_pool_auto_scaling_max_nodes
 }
 
+module "cloud_main_system_node_pool" {
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+
+  name                  = "cloudmainsystem"
+  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
+  kubernetes_version    = var.cloud_main_system_node_pool_kubernetes_version
+  node_count            = 1
+  #availability_zones    = var.azure_availability_zones
+  vm_size = "Standard_D16s_v3"
+  labels = {
+    "node.statcan.gc.ca/purpose"        = "system"
+    "node.statcan.gc.ca/use"            = "cloud-main-system"
+    "data.statcan.gc.ca/classification" = "protected-b"
+  }
+  taints = [
+    "node.statcan.gc.ca/purpose=system:NoSchedule",
+    "node.statcan.gc.ca/use=cloud-main-system:NoSchedule",
+    "data.statcan.gc.ca/classification=protected-b:NoSchedule"
+  ]
+  enable_host_encryption = true
+  subnet_id              = module.network.aks_cloud_main_system_subnet_id
+
+  enable_auto_scaling    = true
+  auto_scaling_min_nodes = var.cloud_main_system_node_pool_auto_scaling_min_nodes
+  auto_scaling_max_nodes = var.cloud_main_system_node_pool_auto_scaling_max_nodes
+}
+
 module "user_gpu_protected__node_pool" {
   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
 

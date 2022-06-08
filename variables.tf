@@ -188,6 +188,22 @@ variable "user_gpu_unclassified_node_pool_auto_scaling_max_nodes" {
   default = 3
 }
 
+variable "cloud_main_system_node_pool_kubernetes_version" {
+  description = "Kubernetes version for the cloud main system node pool"
+
+  default = null
+}
+
+variable "cloud_main_system_node_pool_auto_scaling_min_nodes" {
+  type    = number
+  default = 0
+}
+
+variable "cloud_main_system_node_pool_auto_scaling_max_nodes" {
+  type    = number
+  default = 3
+}
+
 variable "user_protected_b_node_pool_kubernetes_version" {
   description = "Kubernetes version for the user Protected B node pool"
 
