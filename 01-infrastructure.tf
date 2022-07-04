@@ -229,7 +229,7 @@ module "user_protected_b_node_pool" {
 module "cloud_main_system_node_pool" {
   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
 
-  name                  = "cloudmainsystem"
+  name                  = "cloudmainsys"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
   kubernetes_version    = var.cloud_main_system_node_pool_kubernetes_version
   node_count            = 1
