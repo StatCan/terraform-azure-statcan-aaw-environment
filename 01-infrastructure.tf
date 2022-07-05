@@ -313,7 +313,7 @@ module "user_compute_optimized_unclassified_node_pool" {
 
   name                  = "usercpu72uc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
-  kubernetes_version    = var.user_gpu_protected_b_node_pool_kubernetes_version
+  kubernetes_version    = var.user_gpu_unclassified_node_pool_kubernetes_version
   node_count            = 1 // this gets overwritten
   #availability_zones    = var.azure_gpu_availability_zones
   vm_size = "Standard_F72s_v2"
