@@ -1,5 +1,5 @@
 module "network" {
-  source = "git::https://github.com/statcan/terraform-azure-statcan-aaw-network.git?ref=v0.3.9"
+  source = "git::https://github.com/statcan/terraform-azure-statcan-aaw-network.git?ref=v0.3.11"
 
   prefix             = local.prefix
   location           = var.azure_region
