@@ -226,33 +226,6 @@ module "user_protected_b_node_pool" {
   auto_scaling_max_nodes = var.user_protected_b_node_pool_auto_scaling_max_nodes
 }
 
-module "cloud_main_system_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
-
-  name                  = "cloudmainsys"
-  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
-  kubernetes_version    = var.cloud_main_system_node_pool_kubernetes_version
-  node_count            = 1
-  #availability_zones    = var.azure_availability_zones
-  vm_size = "Standard_D16s_v3"
-  labels = {
-    "node.statcan.gc.ca/purpose"        = "system"
-    "node.statcan.gc.ca/use"            = "cloud-main-system"
-    "data.statcan.gc.ca/classification" = "protected-b"
-  }
-  taints = [
-    "node.statcan.gc.ca/purpose=system:NoSchedule",
-    "node.statcan.gc.ca/use=cloud-main-system:NoSchedule",
-    "data.statcan.gc.ca/classification=protected-b:NoSchedule"
-  ]
-  enable_host_encryption = true
-  subnet_id              = module.network.aks_cloud_main_system_subnet_id
-
-  enable_auto_scaling    = true
-  auto_scaling_min_nodes = var.cloud_main_system_node_pool_auto_scaling_min_nodes
-  auto_scaling_max_nodes = var.cloud_main_system_node_pool_auto_scaling_max_nodes
-}
-
 module "user_gpu_protected__node_pool" {
   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
 
@@ -305,61 +278,4 @@ module "user_gpufour_protected__node_pool" {
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_gpu_four_protected_b_node_pool_auto_scaling_min_nodes
   auto_scaling_max_nodes = var.user_gpu_four_protected_b_node_pool_auto_scaling_max_nodes
-}
-
-// Unclassified compute-optimized node pool
-module "user_compute_optimized_unclassified_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
-
-  name                  = "usercpu72uc"
-  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
-  kubernetes_version    = var.user_gpu_unclassified_node_pool_kubernetes_version
-  node_count            = 1 // this gets overwritten
-  #availability_zones    = var.azure_gpu_availability_zones
-  vm_size = "Standard_F72s_v2"
-  labels = {
-    "node.statcan.gc.ca/purpose"        = "user"
-    "node.statcan.gc.ca/use"            = "cpu-72"
-    "data.statcan.gc.ca/classification" = "unclassified"
-  }
-  taints = [
-    "node.statcan.gc.ca/purpose=user:NoSchedule",
-    "node.statcan.gc.ca/use=cpu-72:NoSchedule",
-    "data.statcan.gc.ca/classification=unclassified:NoSchedule"
-  ]
-  enable_host_encryption = true
-  subnet_id              = module.network.aks_user_unclassified_subnet_id
-
-  enable_auto_scaling    = true
-  auto_scaling_min_nodes = var.user_cpu_seventy_two_unclassified_node_pool_auto_scaling_min_nodes
-  auto_scaling_max_nodes = var.user_cpu_seventy_two_unclassified_node_pool_auto_scaling_max_nodes
-}
-
-// Pro-B compute-optimized node pool
-module "user_compute_optimized_protected_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
-
-  name                  = "usercpu72pb"
-  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
-  // Assumption: we are using same k8s version as other node pools, that's why we're referencing another version here.
-  kubernetes_version    = var.user_gpu_protected_b_node_pool_kubernetes_version
-  node_count            = 1
-  #availability_zones    = var.azure_gpu_availability_zones
-  vm_size = "Standard_F72s_v2"
-  labels = {
-    "node.statcan.gc.ca/purpose"        = "user"
-    "node.statcan.gc.ca/use"            = "cpu-72"
-    "data.statcan.gc.ca/classification" = "protected-b"
-  }
-  taints = [
-    "node.statcan.gc.ca/purpose=user:NoSchedule",
-    "node.statcan.gc.ca/use=cpu-72:NoSchedule",
-    "data.statcan.gc.ca/classification=protected-b:NoSchedule"
-  ]
-  enable_host_encryption = true
-  subnet_id              = module.network.aks_user_protected_b_subnet_id
-
-  enable_auto_scaling    = true
-  auto_scaling_min_nodes = var.user_cpu_seventy_two_protected_b_node_pool_auto_scaling_min_nodes
-  auto_scaling_max_nodes = var.user_cpu_seventy_two_protected_b_node_pool_auto_scaling_max_nodes
 }
