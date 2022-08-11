@@ -307,6 +307,33 @@ module "user_gpufour_protected__node_pool" {
   auto_scaling_max_nodes = var.user_gpu_four_protected_b_node_pool_auto_scaling_max_nodes
 }
 
+module "user_gpufour_unclassified__node_pool" {
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+
+  name                  = "usergpu4uc"
+  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
+  kubernetes_version    = var.user_gpu_protected_b_node_pool_kubernetes_version
+  node_count            = 1
+  #availability_zones    = var.azure_gpu_availability_zones
+  vm_size = "Standard_NC24s_v3"
+  labels = {
+    "node.statcan.gc.ca/purpose"        = "user"
+    "node.statcan.gc.ca/use"            = "gpu-4"
+    "data.statcan.gc.ca/classification" = "unclassified"
+  }
+  taints = [
+    "node.statcan.gc.ca/purpose=user:NoSchedule",
+    "node.statcan.gc.ca/use=gpu-4:NoSchedule",
+    "data.statcan.gc.ca/classification=unclassified:NoSchedule"
+  ]
+  enable_host_encryption = true
+  subnet_id              = module.network.aks_user_protected_b_subnet_id
+
+  enable_auto_scaling    = true
+  auto_scaling_min_nodes = var.user_gpu_four_unclassified_node_pool_auto_scaling_min_nodes
+  auto_scaling_max_nodes = var.user_gpu_four_unclassified_node_pool_auto_scaling_max_nodes
+}
+
 // Unclassified compute-optimized node pool
 module "user_compute_optimized_unclassified_node_pool" {
   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"

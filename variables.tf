@@ -246,6 +246,16 @@ variable "user_gpu_four_protected_b_node_pool_auto_scaling_max_nodes" {
   default = 1
 }
 
+variable "user_gpu_four_unclassified_node_pool_auto_scaling_min_nodes" {
+  type    = number
+  default = 0
+}
+
+variable "user_gpu_four_unclassified_node_pool_auto_scaling_max_nodes" {
+  type    = number
+  default = 1
+}
+
 variable "user_cpu_seventy_two_unclassified_node_pool_auto_scaling_min_nodes" {
   type    = number
   default = 0
