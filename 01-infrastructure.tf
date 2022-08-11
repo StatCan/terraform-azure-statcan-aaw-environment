@@ -327,7 +327,7 @@ module "user_gpufour_unclassified__node_pool" {
     "data.statcan.gc.ca/classification=unclassified:NoSchedule"
   ]
   enable_host_encryption = true
-  subnet_id              = module.network.aks_user_protected_b_subnet_id
+  subnet_id              = module.network.aks_user_unclassified_subnet_id
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_gpu_four_unclassified_node_pool_auto_scaling_min_nodes
