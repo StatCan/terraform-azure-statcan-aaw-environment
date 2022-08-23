@@ -156,6 +156,7 @@ module "user_unclassified_node_pool" {
   node_count            = 1
   #availability_zones    = var.azure_availability_zones
   vm_size = "Standard_D16s_v3"
+  max_pods = var.user_unclassified_node_pool_max_pods
   labels = {
     "node.statcan.gc.ca/purpose"        = "user"
     "node.statcan.gc.ca/use"            = "general"
@@ -209,6 +210,7 @@ module "user_protected_b_node_pool" {
   node_count            = 1
   #availability_zones    = var.azure_availability_zones
   vm_size = "Standard_D16s_v3"
+  max_pods = var.user_protected_b_node_pool_max_pods
   labels = {
     "node.statcan.gc.ca/purpose"        = "user"
     "node.statcan.gc.ca/use"            = "general"
