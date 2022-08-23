@@ -276,6 +276,16 @@ variable "user_cpu_seventy_two_protected_b_node_pool_auto_scaling_max_nodes" {
   default = 1
 }
 
+variable "user_unclassified_node_pool_max_pods" {
+  type    = number
+  default = 60
+}
+
+variable "user_protected_b_node_pool_max_pods" {
+  type    = number
+  default = 60
+}
+
 variable "network_policy" {
   description = "Network policy provider to use"
 
