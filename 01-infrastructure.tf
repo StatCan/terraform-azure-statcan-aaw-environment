@@ -147,32 +147,32 @@ module "storage_node_pool" {
   auto_scaling_max_nodes = var.storage_node_pool_auto_scaling_max_nodes
 }
 
-module "user_unclassified_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+# module "user_unclassified_node_pool" {
+#   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
 
-  name                  = "useruc"
-  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
-  kubernetes_version    = var.user_unclassified_node_pool_kubernetes_version
-  node_count            = 1
-  #availability_zones    = var.azure_availability_zones
-  vm_size = "Standard_D16s_v3"
-  max_pods = var.user_unclassified_node_pool_max_pods
-  labels = {
-    "node.statcan.gc.ca/purpose"        = "user"
-    "node.statcan.gc.ca/use"            = "general"
-    "data.statcan.gc.ca/classification" = "unclassified"
-  }
-  taints = [
-    "node.statcan.gc.ca/purpose=user:NoSchedule",
-    "data.statcan.gc.ca/classification=unclassified:NoSchedule"
-  ]
-  enable_host_encryption = true
-  subnet_id              = module.network.aks_user_unclassified_subnet_id
+#   name                  = "useruc"
+#   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
+#   kubernetes_version    = var.user_unclassified_node_pool_kubernetes_version
+#   node_count            = 1
+#   #availability_zones    = var.azure_availability_zones
+#   vm_size = "Standard_D16s_v3"
+#   max_pods = var.user_unclassified_node_pool_max_pods
+#   labels = {
+#     "node.statcan.gc.ca/purpose"        = "user"
+#     "node.statcan.gc.ca/use"            = "general"
+#     "data.statcan.gc.ca/classification" = "unclassified"
+#   }
+#   taints = [
+#     "node.statcan.gc.ca/purpose=user:NoSchedule",
+#     "data.statcan.gc.ca/classification=unclassified:NoSchedule"
+#   ]
+#   enable_host_encryption = true
+#   subnet_id              = module.network.aks_user_unclassified_subnet_id
 
-  enable_auto_scaling    = true
-  auto_scaling_min_nodes = var.user_unclassified_node_pool_auto_scaling_min_nodes
-  auto_scaling_max_nodes = var.user_unclassified_node_pool_auto_scaling_max_nodes
-}
+#   enable_auto_scaling    = true
+#   auto_scaling_min_nodes = var.user_unclassified_node_pool_auto_scaling_min_nodes
+#   auto_scaling_max_nodes = var.user_unclassified_node_pool_auto_scaling_max_nodes
+# }
 
 module "user_gpu_unclassified_node_pool" {
   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
@@ -201,32 +201,32 @@ module "user_gpu_unclassified_node_pool" {
   auto_scaling_max_nodes = var.user_gpu_unclassified_node_pool_auto_scaling_max_nodes
 }
 
-module "user_protected_b_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+# module "user_protected_b_node_pool" {
+#   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
 
-  name                  = "userpb"
-  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
-  kubernetes_version    = var.user_protected_b_node_pool_kubernetes_version
-  node_count            = 1
-  #availability_zones    = var.azure_availability_zones
-  vm_size = "Standard_D16s_v3"
-  max_pods = var.user_protected_b_node_pool_max_pods
-  labels = {
-    "node.statcan.gc.ca/purpose"        = "user"
-    "node.statcan.gc.ca/use"            = "general"
-    "data.statcan.gc.ca/classification" = "protected-b"
-  }
-  taints = [
-    "node.statcan.gc.ca/purpose=user:NoSchedule",
-    "data.statcan.gc.ca/classification=protected-b:NoSchedule"
-  ]
-  enable_host_encryption = true
-  subnet_id              = module.network.aks_user_protected_b_subnet_id
+#   name                  = "userpb"
+#   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
+#   kubernetes_version    = var.user_protected_b_node_pool_kubernetes_version
+#   node_count            = 1
+#   #availability_zones    = var.azure_availability_zones
+#   vm_size = "Standard_D16s_v3"
+#   max_pods = var.user_protected_b_node_pool_max_pods
+#   labels = {
+#     "node.statcan.gc.ca/purpose"        = "user"
+#     "node.statcan.gc.ca/use"            = "general"
+#     "data.statcan.gc.ca/classification" = "protected-b"
+#   }
+#   taints = [
+#     "node.statcan.gc.ca/purpose=user:NoSchedule",
+#     "data.statcan.gc.ca/classification=protected-b:NoSchedule"
+#   ]
+#   enable_host_encryption = true
+#   subnet_id              = module.network.aks_user_protected_b_subnet_id
 
-  enable_auto_scaling    = true
-  auto_scaling_min_nodes = var.user_protected_b_node_pool_auto_scaling_min_nodes
-  auto_scaling_max_nodes = var.user_protected_b_node_pool_auto_scaling_max_nodes
-}
+#   enable_auto_scaling    = true
+#   auto_scaling_min_nodes = var.user_protected_b_node_pool_auto_scaling_min_nodes
+#   auto_scaling_max_nodes = var.user_protected_b_node_pool_auto_scaling_max_nodes
+# }
 
 module "cloud_main_system_node_pool" {
   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
