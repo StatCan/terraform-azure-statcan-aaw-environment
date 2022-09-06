@@ -316,3 +316,25 @@ variable "cluster_admins" {
 variable "cluster_ssh_key" {
   description = "The SSH key for Kubernetes to use"
 }
+
+# Cloud Main Networking Variables
+variable "cloud_main_firewall_ip" {
+  description = "IP of cloud main firewall"
+  default     = null
+}
+
+variable "cloud_main_address_prefix" {
+  description = "IP prefix for cloud main addresses."
+  default     = null
+}
+
+variable "cloud_main_gitlab_https_ip" {
+  description = "IP of cloud main gitlab for https (gitlab.k8s.cloud.statcan.ca)"
+  default     = null
+}
+
+variable "cloud_main_gitlab_ssh_ip" {
+  description = "IP of cloud main gitlab for ssh (gitlab-ssh.cloud.statcan.ca)"
+  default     = null
+}
+
