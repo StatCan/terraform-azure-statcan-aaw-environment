@@ -15,4 +15,8 @@ module "network" {
   ingress_kubeflow_private_ip      = var.ingress_kubeflow_private_ip
   ingress_authenticated_private_ip = var.ingress_authenticated_private_ip
   ingress_protected_b_private_ip   = var.ingress_protected_b_private_ip
+  cloud_main_firewall_ip           = var.cloud_main_firewall_ip
+  cloud_main_address_prefix        = var.cloud_main_address_prefix
+  cloud_main_gitlab_https_ip       = var.cloud_main_gitlab_https_ip
+  cloud_main_gitlab_ssh_ip         = var.cloud_main_gitlab_ssh_ip
 }
