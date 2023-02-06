@@ -155,7 +155,7 @@ module "user_unclassified_node_pool" {
   kubernetes_version    = var.user_unclassified_node_pool_kubernetes_version
   node_count            = 1
   #availability_zones    = var.azure_availability_zones
-  vm_size = "Standard_D16s_v3"
+  vm_size  = var.prefixes.environment == "prod" ? "Standard_D64as_v5" : "Standard_D16s_v3"
   max_pods = var.user_unclassified_node_pool_max_pods
   labels = {
     "node.statcan.gc.ca/purpose"        = "user"
@@ -209,7 +209,7 @@ module "user_protected_b_node_pool" {
   kubernetes_version    = var.user_protected_b_node_pool_kubernetes_version
   node_count            = 1
   #availability_zones    = var.azure_availability_zones
-  vm_size = "Standard_D16s_v3"
+  vm_size  = "Standard_D16s_v3"
   max_pods = var.user_protected_b_node_pool_max_pods
   labels = {
     "node.statcan.gc.ca/purpose"        = "user"
@@ -371,8 +371,8 @@ module "user_compute_optimized_protected_node_pool" {
   name                  = "usercpu72pb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
   // Assumption: we are using same k8s version as other node pools, that's why we're referencing another version here.
-  kubernetes_version    = var.user_gpu_protected_b_node_pool_kubernetes_version
-  node_count            = 1
+  kubernetes_version = var.user_gpu_protected_b_node_pool_kubernetes_version
+  node_count         = 1
   #availability_zones    = var.azure_gpu_availability_zones
   vm_size = "Standard_F72s_v2"
   labels = {
