@@ -30,6 +30,7 @@ variable "azure_gpu_availability_zones" {
 
 variable "ddos_protection_plan_id" {
   description = "DDOS Protection Plan ID"
+  sensitive   = true
 }
 
 variable "network_start" {
@@ -75,21 +76,25 @@ variable "cluster_authorized_ip_ranges" {
 variable "ingress_general_private_ip" {
   description = "Private IP of the general ingress"
   default     = null
+  sensitive   = true
 }
 
 variable "ingress_kubeflow_private_ip" {
   description = "Private IP of the kubeflow ingress"
   default     = null
+  sensitive   = true
 }
 
 variable "ingress_authenticated_private_ip" {
   description = "Private IP of the authenticated ingress"
   default     = null
+  sensitive   = true
 }
 
 variable "ingress_protected_b_private_ip" {
   description = "Private IP of the protected b ingress"
   default     = null
+  sensitive   = true
 }
 
 variable "system_node_pool_kubernetes_version" {
@@ -315,6 +320,7 @@ variable "cluster_admins" {
 
 variable "cluster_ssh_key" {
   description = "The SSH key for Kubernetes to use"
+  sensitive   = true
 }
 
 # Cloud Main Networking Variables
