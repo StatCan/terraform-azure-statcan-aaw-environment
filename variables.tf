@@ -76,25 +76,21 @@ variable "cluster_authorized_ip_ranges" {
 variable "ingress_general_private_ip" {
   description = "Private IP of the general ingress"
   default     = null
-  sensitive   = true
 }
 
 variable "ingress_kubeflow_private_ip" {
   description = "Private IP of the kubeflow ingress"
   default     = null
-  sensitive   = true
 }
 
 variable "ingress_authenticated_private_ip" {
   description = "Private IP of the authenticated ingress"
   default     = null
-  sensitive   = true
 }
 
 variable "ingress_protected_b_private_ip" {
   description = "Private IP of the protected b ingress"
   default     = null
-  sensitive   = true
 }
 
 variable "system_node_pool_kubernetes_version" {
