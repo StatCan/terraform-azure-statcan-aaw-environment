@@ -93,6 +93,11 @@ variable "ingress_protected_b_private_ip" {
   default     = null
 }
 
+variable "ingress_allowed_sources" {
+  description = "Source IPs which are allowed to connect to the ingress gateway"
+  default     = ["*"]
+}
+
 variable "system_node_pool_kubernetes_version" {
   description = "Kubernetes version for the system node pool"
 
