@@ -1,5 +1,5 @@
 module "network" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/aaw/modules/terraform-azure-statcan-aaw-network.git?ref=v1.0.1"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/aaw/modules/terraform-azure-statcan-aaw-network.git?ref=v1.1.0"
 
   prefix             = local.prefix
   location           = var.azure_region
@@ -15,6 +15,7 @@ module "network" {
   ingress_kubeflow_private_ip                 = var.ingress_kubeflow_private_ip
   ingress_authenticated_private_ip            = var.ingress_authenticated_private_ip
   ingress_protected_b_private_ip              = var.ingress_protected_b_private_ip
+  ingress_allowed_sources                     = var.ingress_allowed_sources
   cloud_main_firewall_ip                      = var.cloud_main_firewall_ip
   cloud_main_address_prefix                   = var.cloud_main_address_prefix
   management_cluster_https_ingress_gateway_ip = var.management_cluster_https_ingress_gateway_ip
