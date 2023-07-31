@@ -305,6 +305,26 @@ variable "kubernetes_version" {
   default = "1.17.16"
 }
 
+variable "storage_profile" {
+  type = object({
+    blob_driver_enabled         = bool
+    disk_driver_enabled         = bool
+    disk_driver_version         = string
+    file_driver_enabled         = bool
+    snapshot_controller_enabled = bool
+  })
+
+  description = "The Storage Profile object to be used for the AKS Cluster"
+
+  default = {
+    blob_driver_enabled         = false
+    disk_driver_enabled         = true
+    disk_driver_version         = "v1"
+    file_driver_enabled         = true
+    snapshot_controller_enabled = true
+  }
+}
+
 # RBAC
 variable "cluster_users" {
   type        = list(string)

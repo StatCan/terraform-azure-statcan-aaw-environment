@@ -1,5 +1,5 @@
 module "infrastructure" {
-  source = "git::https://github.com/statcan/terraform-statcan-azure-cloud-native-environment-infrastructure.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-statcan-azure-cloud-native-environment-infrastructure.git?ref=v1.0.2"
 
   prefix   = local.prefix
   tags     = var.azure_tags
@@ -52,6 +52,9 @@ module "infrastructure" {
     "data.statcan.gc.ca/classification=protected-b:NoSchedule"
   ]
 
+  # CSI Drivers
+  storage_profile = var.storage_profile
+
   # SSH Key
   cluster_ssh_key = var.cluster_ssh_key
 
@@ -94,7 +97,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "aks" {
 }
 
 module "monitoring_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "monitoring"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -121,7 +124,7 @@ module "monitoring_node_pool" {
 }
 
 module "storage_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "storage"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -148,7 +151,7 @@ module "storage_node_pool" {
 }
 
 module "user_unclassified_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "useruc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -175,7 +178,7 @@ module "user_unclassified_node_pool" {
 }
 
 module "user_gpu_unclassified_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "usergpuuc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -202,7 +205,7 @@ module "user_gpu_unclassified_node_pool" {
 }
 
 module "user_protected_b_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "userpb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -229,7 +232,7 @@ module "user_protected_b_node_pool" {
 }
 
 module "cloud_main_system_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "cloudmainsys"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -256,7 +259,7 @@ module "cloud_main_system_node_pool" {
 }
 
 module "user_gpu_protected__node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "usergpupb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -283,7 +286,7 @@ module "user_gpu_protected__node_pool" {
 }
 
 module "user_gpufour_protected__node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "usergpu4pb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -310,7 +313,7 @@ module "user_gpufour_protected__node_pool" {
 }
 
 module "user_gpufour_unclassified__node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "usergpu4uc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -338,7 +341,7 @@ module "user_gpufour_unclassified__node_pool" {
 
 // Unclassified compute-optimized node pool
 module "user_compute_optimized_unclassified_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "usercpu72uc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -366,7 +369,7 @@ module "user_compute_optimized_unclassified_node_pool" {
 
 // Pro-B compute-optimized node pool
 module "user_compute_optimized_protected_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.0"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
 
   name                  = "usercpu72pb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
