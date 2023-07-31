@@ -1,5 +1,5 @@
 module "infrastructure" {
-  source = "git::https://github.com/statcan/terraform-statcan-azure-cloud-native-environment-infrastructure.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-statcan-azure-cloud-native-environment-infrastructure.git?ref=v1.0.3"
 
   prefix   = local.prefix
   tags     = var.azure_tags
