@@ -1,9 +1,9 @@
 module "network" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/aaw/modules/terraform-azure-statcan-aaw-network.git?ref=v1.3.4"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/aaw/modules/terraform-azure-statcan-aaw-network.git?ref=v1.3.5"
 
   prefix             = local.prefix
   location           = var.azure_region
-  tags               = var.azure_tags
+  tags               = local.azure_tags
   availability_zones = var.azure_availability_zones
 
   ddos_protection_plan_id = var.ddos_protection_plan_id

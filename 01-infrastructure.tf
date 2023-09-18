@@ -1,8 +1,8 @@
 module "infrastructure" {
-  source = "git::https://github.com/statcan/terraform-statcan-azure-cloud-native-environment-infrastructure.git?ref=v1.0.3"
+  source = "git::https://github.com/statcan/terraform-statcan-azure-cloud-native-environment-infrastructure.git?ref=v1.0.4"
 
   prefix   = local.prefix
-  tags     = var.azure_tags
+  tags     = local.azure_tags
   location = var.azure_region
 
   kubernetes_version = var.kubernetes_version
@@ -97,7 +97,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "aks" {
 }
 
 module "monitoring_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "monitoring"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -117,6 +117,7 @@ module "monitoring_node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_system_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.monitoring_node_pool_auto_scaling_min_nodes
@@ -124,7 +125,7 @@ module "monitoring_node_pool" {
 }
 
 module "storage_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "storage"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -144,6 +145,7 @@ module "storage_node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_system_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.storage_node_pool_auto_scaling_min_nodes
@@ -151,7 +153,7 @@ module "storage_node_pool" {
 }
 
 module "user_unclassified_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "useruc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -171,6 +173,7 @@ module "user_unclassified_node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_user_unclassified_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_unclassified_node_pool_auto_scaling_min_nodes
@@ -178,7 +181,7 @@ module "user_unclassified_node_pool" {
 }
 
 module "user_gpu_unclassified_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "usergpuuc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -198,6 +201,7 @@ module "user_gpu_unclassified_node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_user_unclassified_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_gpu_unclassified_node_pool_auto_scaling_min_nodes
@@ -205,7 +209,7 @@ module "user_gpu_unclassified_node_pool" {
 }
 
 module "user_protected_b_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "userpb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -225,6 +229,7 @@ module "user_protected_b_node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_user_protected_b_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_protected_b_node_pool_auto_scaling_min_nodes
@@ -232,7 +237,7 @@ module "user_protected_b_node_pool" {
 }
 
 module "cloud_main_system_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "cloudmainsys"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -252,6 +257,7 @@ module "cloud_main_system_node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_cloud_main_system_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.cloud_main_system_node_pool_auto_scaling_min_nodes
@@ -259,7 +265,7 @@ module "cloud_main_system_node_pool" {
 }
 
 module "user_gpu_protected__node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "usergpupb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -279,6 +285,7 @@ module "user_gpu_protected__node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_user_protected_b_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_gpu_protected_b_node_pool_auto_scaling_min_nodes
@@ -286,7 +293,7 @@ module "user_gpu_protected__node_pool" {
 }
 
 module "user_gpufour_protected__node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "usergpu4pb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -306,6 +313,7 @@ module "user_gpufour_protected__node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_user_protected_b_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_gpu_four_protected_b_node_pool_auto_scaling_min_nodes
@@ -313,7 +321,7 @@ module "user_gpufour_protected__node_pool" {
 }
 
 module "user_gpufour_unclassified__node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "usergpu4uc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -333,6 +341,7 @@ module "user_gpufour_unclassified__node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_user_unclassified_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_gpu_four_unclassified_node_pool_auto_scaling_min_nodes
@@ -341,7 +350,7 @@ module "user_gpufour_unclassified__node_pool" {
 
 // Unclassified compute-optimized node pool
 module "user_compute_optimized_unclassified_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "usercpu72uc"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -361,6 +370,7 @@ module "user_compute_optimized_unclassified_node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_user_unclassified_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_cpu_seventy_two_unclassified_node_pool_auto_scaling_min_nodes
@@ -369,7 +379,7 @@ module "user_compute_optimized_unclassified_node_pool" {
 
 // Pro-B compute-optimized node pool
 module "user_compute_optimized_protected_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.2"
+  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
   name                  = "usercpu72pb"
   kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
@@ -390,6 +400,7 @@ module "user_compute_optimized_protected_node_pool" {
   ]
   enable_host_encryption = true
   subnet_id              = module.network.aks_user_protected_b_subnet_id
+  tags                   = local.azure_tags
 
   enable_auto_scaling    = true
   auto_scaling_min_nodes = var.user_cpu_seventy_two_protected_b_node_pool_auto_scaling_min_nodes

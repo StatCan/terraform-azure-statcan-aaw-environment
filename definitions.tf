@@ -10,7 +10,13 @@ locals {
   prefix = "${var.prefixes.application}-${var.prefixes.environment}-${var.prefixes.location}-${var.prefixes.num}"
 
   // Azure tags
-  azure_tags = merge({ DateCreatedModified = "" }, var.azure_tags)
+  azure_tags = merge(
+    var.azure_tags,
+    {
+      ModuleName    = "terraform-azure-statcan-aaw-environment",
+      ModuleVersion = "2.3.7",
+    }
+  )
 }
 
 data "azurerm_client_config" "current" {}
