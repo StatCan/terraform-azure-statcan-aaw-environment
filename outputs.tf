@@ -7,7 +7,7 @@ output "azure_region" {
 }
 
 output "azure_tags" {
-  value = var.azure_tags
+  value = local.azure_tags
 }
 
 output "kubeconfig" {
