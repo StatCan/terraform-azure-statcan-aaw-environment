@@ -131,6 +131,10 @@ variable "system_general_node_pool_auto_scaling_max_nodes" {
   default = 5
 }
 
+variable "system_general_node_pool_max_pods" {
+  type    = number
+  default = 60
+}
 variable "monitoring_node_pool_kubernetes_version" {
   description = "Kubernetes version for the monitoring node pool"
 

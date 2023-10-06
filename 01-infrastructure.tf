@@ -41,6 +41,7 @@ module "infrastructure" {
   general_node_pool_enable_auto_scaling    = true
   general_node_pool_auto_scaling_min_nodes = var.system_general_node_pool_auto_scaling_min_nodes
   general_node_pool_auto_scaling_max_nodes = var.system_general_node_pool_auto_scaling_max_nodes
+  general_node_pool_max_pods               = var.system_general_node_pool_max_pods
   general_node_pool_labels = {
     "node.statcan.gc.ca/purpose"        = "system"
     "node.statcan.gc.ca/use"            = "general"
