@@ -105,6 +105,11 @@ variable "system_node_pool_kubernetes_version" {
   default = null
 }
 
+variable "system_node_pool_vm_size" {
+  description = "VM size used by the system node pool"
+  default     = "Standard_D16s_v3"
+}
+
 variable "system_node_pool_auto_scaling_min_nodes" {
   type    = number
   default = 0
@@ -119,6 +124,11 @@ variable "system_general_node_pool_kubernetes_version" {
   description = "Kubernetes version for the system general node pool"
 
   default = null
+}
+
+variable "system_general_node_pool_vm_size" {
+  description = "VM size for system general node pool"
+  default     = "Standard_D16s_v3"
 }
 
 variable "system_general_node_pool_auto_scaling_min_nodes" {

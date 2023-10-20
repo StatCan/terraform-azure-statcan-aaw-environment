@@ -33,12 +33,14 @@ module "infrastructure" {
   # Nodes
   system_node_pool_kubernetes_version     = var.system_node_pool_kubernetes_version
   system_node_pool_enable_auto_scaling    = true
+  system_node_pool_vm_size                = var.system_node_pool_vm_size
   system_node_pool_auto_scaling_min_nodes = var.system_node_pool_auto_scaling_min_nodes
   system_node_pool_auto_scaling_max_nodes = var.system_node_pool_auto_scaling_max_nodes
 
   # We don't want the general node pool, so set the count to 0.
   general_node_pool_kubernetes_version     = var.system_general_node_pool_kubernetes_version
   general_node_pool_enable_auto_scaling    = true
+  general_node_pool_vm_size                = var.system_general_node_pool_vm_size
   general_node_pool_auto_scaling_min_nodes = var.system_general_node_pool_auto_scaling_min_nodes
   general_node_pool_auto_scaling_max_nodes = var.system_general_node_pool_auto_scaling_max_nodes
   general_node_pool_max_pods               = var.system_general_node_pool_max_pods
