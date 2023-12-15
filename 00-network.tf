@@ -1,5 +1,5 @@
 module "network" {
-  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/aaw/modules/terraform-azure-statcan-aaw-network.git?ref=v1.3.6"
+  source = "git::https://gitlab.k8s.cloud.statcan.ca/cloudnative/aaw/modules/terraform-azure-statcan-aaw-network.git?ref=v1.3.8"
 
   prefix             = local.prefix
   location           = var.azure_region
@@ -20,4 +20,5 @@ module "network" {
   cloud_main_address_prefix                   = var.cloud_main_address_prefix
   management_cluster_https_ingress_gateway_ip = var.management_cluster_https_ingress_gateway_ip
   cloud_main_gitlab_ssh_ip                    = var.cloud_main_gitlab_ssh_ip
+  geo_database_ip                             = var.geo_database_ip
 }

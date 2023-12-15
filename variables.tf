@@ -380,3 +380,7 @@ variable "cloud_main_gitlab_ssh_ip" {
   default     = null
 }
 
+variable "geo_database_ip" {
+  description = "IP of geo database (geo-prod-mulp-db.postgres.database.azure.com)"
+  default     = null
+}
