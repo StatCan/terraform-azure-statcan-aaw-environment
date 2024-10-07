@@ -155,37 +155,6 @@ variable "system_general_node_pool_max_pods" {
   type    = number
   default = 60
 }
-variable "monitoring_node_pool_kubernetes_version" {
-  description = "Kubernetes version for the monitoring node pool"
-
-  default = null
-}
-
-variable "monitoring_node_pool_auto_scaling_min_nodes" {
-  type    = number
-  default = 0
-}
-
-variable "monitoring_node_pool_auto_scaling_max_nodes" {
-  type    = number
-  default = 3
-}
-
-variable "storage_node_pool_kubernetes_version" {
-  description = "Kubernetes version for the storage node pool"
-
-  default = null
-}
-
-variable "storage_node_pool_auto_scaling_min_nodes" {
-  type    = number
-  default = 0
-}
-
-variable "storage_node_pool_auto_scaling_max_nodes" {
-  type    = number
-  default = 3
-}
 
 variable "user_unclassified_node_pool_kubernetes_version" {
   description = "Kubernetes version for the user unclassified node pool"
