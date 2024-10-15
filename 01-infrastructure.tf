@@ -99,62 +99,6 @@ resource "azurerm_firewall_policy_rule_collection_group" "aks" {
   }
 }
 
-module "monitoring_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
-
-  name                  = "monitoring"
-  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
-  kubernetes_version    = var.monitoring_node_pool_kubernetes_version
-  node_count            = 1
-  availability_zones    = var.azure_availability_zones
-  vm_size               = "Standard_E16s_v3"
-  labels = {
-    "node.statcan.gc.ca/purpose"        = "system"
-    "node.statcan.gc.ca/use"            = "monitoring"
-    "data.statcan.gc.ca/classification" = "protected-b"
-  }
-  taints = [
-    "node.statcan.gc.ca/purpose=system:NoSchedule",
-    "node.statcan.gc.ca/use=monitoring:NoSchedule",
-    "data.statcan.gc.ca/classification=protected-b:NoSchedule"
-  ]
-  enable_host_encryption = true
-  subnet_id              = module.network.aks_system_subnet_id
-  tags                   = local.azure_tags
-
-  enable_auto_scaling    = true
-  auto_scaling_min_nodes = var.monitoring_node_pool_auto_scaling_min_nodes
-  auto_scaling_max_nodes = var.monitoring_node_pool_auto_scaling_max_nodes
-}
-
-module "storage_node_pool" {
-  source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
-
-  name                  = "storage"
-  kubernetes_cluster_id = module.infrastructure.kubernetes_cluster_id
-  kubernetes_version    = var.storage_node_pool_kubernetes_version
-  node_count            = 1
-  availability_zones    = var.azure_availability_zones
-  vm_size               = "Standard_E16s_v3"
-  labels = {
-    "node.statcan.gc.ca/purpose"        = "system"
-    "node.statcan.gc.ca/use"            = "storage"
-    "data.statcan.gc.ca/classification" = "protected-b"
-  }
-  taints = [
-    "node.statcan.gc.ca/purpose=system:NoSchedule",
-    "node.statcan.gc.ca/use=storage:NoSchedule",
-    "data.statcan.gc.ca/classification=protected-b:NoSchedule"
-  ]
-  enable_host_encryption = true
-  subnet_id              = module.network.aks_system_subnet_id
-  tags                   = local.azure_tags
-
-  enable_auto_scaling    = true
-  auto_scaling_min_nodes = var.storage_node_pool_auto_scaling_min_nodes
-  auto_scaling_max_nodes = var.storage_node_pool_auto_scaling_max_nodes
-}
-
 module "user_unclassified_node_pool" {
   source = "git::https://github.com/statcan/terraform-azurerm-kubernetes-cluster-nodepool.git?ref=v1.0.3"
 
